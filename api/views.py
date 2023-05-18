@@ -12,14 +12,14 @@ def getNotes(request):
     serailizer = NoteSerializers(notes, many=True)
     return Response(serailizer.data)
 
-# @api_view(['POST'])
-# def createNote(request):
-#     data = request.data
-#     note = Note.objects.create(
-#         body=data['body']
-#     )
-#     serializer = NoteSerializer(note, many=False)
-#     return Response(serializer.data)
+@api_view(['POST'])
+def createNote(request):
+    data = request.data
+    note = Notes.objects.create(
+        body=data['body']
+    )
+    serializer = NoteSerializers(note, many=False)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def getNote(request, pk):
